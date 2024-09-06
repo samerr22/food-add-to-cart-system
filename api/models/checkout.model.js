@@ -21,6 +21,10 @@ const CheckDSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    Username: {
+      type: String,
+      required: true,
+    },
 
     items: [itemSchema],
     totalPrice: {

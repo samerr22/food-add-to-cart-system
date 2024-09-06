@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import food from "../img/food.jpg";
 
 export default function Bill() {
   const { currentUser } = useSelector((state) => state.user);
@@ -31,11 +32,7 @@ export default function Bill() {
 
   return (
     <div className="min-h-screen">
-      <img
-        src="https://images.pexels.com/photos/236910/pexels-photo-236910.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        alt=""
-        className="w-full h-[700px] opacity-  blur-sm  object-cover"
-      />
+          <img src={food} alt="" className="w-full h-[700px]   object-cover" />
 
       <div className="absolute transform -translate-x-0 translate-y-0 top-1 flex justify-center items-center">
         <div className="lg:mt-20 mt-[270px] md:mt-20 lg:ml-[] md:ml-[] ml-[4px]">

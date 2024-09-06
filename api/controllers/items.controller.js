@@ -111,6 +111,7 @@ export const CheckOutcrete = async (req, res, next) => {
       length,
       totalPrice,
       CurrentuserId,
+      Username,
       items,
     } = req.body;
   
@@ -120,6 +121,7 @@ export const CheckOutcrete = async (req, res, next) => {
       length,
       totalPrice,
       CurrentuserId,
+      Username,
       items,
     });
     try {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import food from "../img/food.jpg";
 
 export default function main() {
   const [Info, setInfo] = useState([]);
@@ -104,122 +105,120 @@ export default function main() {
       setfilter(filteredData);
     }
   }, [query, Info]);
-  
 
   return (
     <div>
-      <div className="flex justify-center items-center mt-2 mb-8">
-        <div>
-          <img
-            src="https://images.pexels.com/photos/4053267/pexels-photo-4053267.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt=""
-            className="h-[600px] w-[1400px] rounded-md shadow-sm"
-          />
-        </div>
-      </div>
-      <div className="flex justify-center items-center mt">
-        <div>
-          <form>
-            <div className="opacity-50">
-              <input
-                type="text"
-                placeholder="Search... "
-                className=" w-[350px] h-10 rounded-full shadow-xl border border-white bg-opacity-10"
-                onChange={(e) => setQuery(e.target.value)}
-              />
+      <img src={food} alt="" className="w-full h-[700px]   object-cover" />
+
+      <div className="absolute transform -translate-x-0 translate-y-0 top-1 flex justify-center items-center">
+        <div className=" mt-24  ml-36">
+          <div className="bg-slate-100 w-[1200px] h-[580px]  rounded-3xl shadow-2xl shadow-black bg-opacity-90 ">
+            <div className="flex justify-center items-center ">
+              <div>
+                <form>
+                  <div className="opacity-50">
+                    <input
+                      type="text"
+                      placeholder="Search... "
+                      className=" w-[350px] h-10 rounded-full shadow-xl border mt-4 border-white bg-opacity-10"
+                      onChange={(e) => setQuery(e.target.value)}
+                    />
+                  </div>
+                </form>
+              </div>
             </div>
-          </form>
-        </div>
-      </div>
-      <div className="flex justify-center items-center">
-        <div className="max-h-96 overflow-y-auto scrollbar-none mt-4">
-          <div className="flex flex-wrap justify-center w-[1300px]">
-            {filter && filter.length > 0 ? (
-              <>
-                {filter.map((items) => (
-                  <tr
-                    key={items._id}
-                    className=" dark:border-gray-700 dark:bg-gray-800"
-                  >
-                    <div
-                      key={items._id}
-                      className=" w-[500px] h-[250px]  mt-10 mb-20 rounded   "
-                    >
-                      <div className="flex justify-center items-center gap-8 mt-4">
-                        <div>
-                          <img
-                            src={items.image}
-                            alt=""
-                            className="w-48 h-48 object-cover"
-                          />
-                        </div>
-
-                        <div>
-                          <div className="font-serif text-lg w-72 opacity-90 break-words">
-                            {items.ItemsN}
-                          </div>
-                          <div className=" opacity-90 font-medium mt-6">
-                            RS.{items.price}
-                          </div>
-                          <div className="">
-                            <div className="flex mt-10">
-                              <div
-                                className="w-[30px] border border-white bg-white rounded-md flex justify-center items-center  cursor-pointer "
-                                onClick={() => decrement(items._id)}
-                              >
-                                <FaMinus className="text-gray-800" />
-                              </div>
-                              <div className="text-[20px] w-[30px]  text-black flex justify-center items-center  ">
-                                {quantityMap.get(items._id) || 1}
+            <div className="flex justify-center items-center">
+              <div className="max-h-96 overflow-y-auto scrollbar-none mt-4">
+                <div className="flex flex-wrap justify-center w-[1100px] ml-24">
+                  {filter && filter.length > 0 ? (
+                    <>
+                      {filter.map((items) => (
+                        <tr
+                          key={items._id}
+                          className=" dark:border-gray-700 dark:bg-gray-800"
+                        >
+                          <div
+                            key={items._id}
+                            className=" w-[500px] h-[250px]  mt-5 mb-5    "
+                          >
+                            <div className="flex justify-center items-center gap-8 mt-4">
+                              <div>
+                                <img
+                                  src={items.image}
+                                  alt=""
+                                  className="w-48 h-48 rounded-3xl shadow-lg object-cover"
+                                />
                               </div>
 
-                              <div
-                                className="w-[30px]  border border-white bg-white rounded-md   flex justify-center items-center cursor-pointer "
-                                onClick={() => increment(items._id)}
-                              >
-                                <FaPlus className="text-gray-800" />
+                              <div>
+                                <div className="font-serif text-lg w-72 opacity-90 break-words">
+                                  {items.ItemsN}
+                                </div>
+                                <div className=" opacity-90 font-medium mt-2">
+                                  RS.{items.price}
+                                </div>
+                                <div className="">
+                                  <div className="flex mt-10">
+                                    <div
+                                      className="w-[30px] border border-white bg-white shadow-sm hover:bg-slate-600  shadow-black rounded-md flex justify-center items-center  cursor-pointer "
+                                      onClick={() => decrement(items._id)}
+                                    >
+                                      <FaMinus className="text-gray-800" />
+                                    </div>
+                                    <div className="text-[20px] w-[30px]  text-black flex justify-center items-center  ">
+                                      {quantityMap.get(items._id) || 1}
+                                    </div>
+
+                                    <div
+                                      className="w-[30px]  border border-white bg-white shadow-sm hover:bg-slate-600  shadow-black  rounded-md   flex justify-center items-center cursor-pointer "
+                                      onClick={() => increment(items._id)}
+                                    >
+                                      <FaPlus className="text-gray-800" />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className=" mt-8">
+                                  <div>
+                                    <button
+                                      onClick={() => handleAddToCart(items._id)}
+                                      className="w-48 h-8 rounded-full font-serif text-white bg-opacity-90 uppercase bg-black border border-white  hover:opacity-80 shadow-lg"
+                                    >
+                                      Add to cart
+                                    </button>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                          <div className="flex justify-center items-center mt-8">
-                            <div>
-                              <button
-                                onClick={() => handleAddToCart(items._id)}
-                                className="w-24 h-8 rounded-full text-white bg-opacity-90 uppercase bg-blue-700 hover:opacity-80 shadow-lg"
-                              >
-                                Add
-                              </button>
-                            </div>
+                        </tr>
+                      ))}
+                    </>
+                  ) : (
+                    <>
+                      <div className="h-96">
+                        <div className="flex justify-center items-center">
+                          <div className="text-2xl font-serif absolute  opacity-60 mt-14 ">
+                            You have no items
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </tr>
-                ))}
-              </>
-            ) : (
-              <>
-                <div className="h-96">
-                  <div className="flex justify-center items-center">
-                    <div className="text-2xl font-serif absolute  opacity-60 mt-14 ">
-                      You have no items
-                    </div>
-                  </div>
+                    </>
+                  )}
                 </div>
-              </>
-            )}
-          </div>
-        </div>
-      </div>
+              </div>
+            </div>
 
-      <div className="flex justify-center items-center mb-8 mt-16">
-        <div>
-          <Link to={`/cart`}>
-            <button className="w-24 h-8  text-opacity-80 rounded-full text-white bg-opacity-90 uppercase bg-blue-700 hover:opacity-80 shadow-lg">
-              {" "}
-              view bill
-            </button>
-          </Link>
+            <div className="flex justify-center items-center mb-8 mt-16">
+              <div>
+                <Link to={`/cart`}>
+                  <button className="w-48  font-serif h-8  text-opacity-80 rounded-full text-white bg-opacity-90 uppercase bg-slate-800  shadow-black border border-white hover:opacity-80 shadow-sm">
+                    {" "}
+                    view bill
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
