@@ -113,6 +113,7 @@ export const CheckOutcrete = async (req, res, next) => {
       CurrentuserId,
       Username,
       items,
+      status
     } = req.body;
   
   
@@ -123,6 +124,7 @@ export const CheckOutcrete = async (req, res, next) => {
       CurrentuserId,
       Username,
       items,
+      status
     });
     try {
       const savedItems = await newItems.save();

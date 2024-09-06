@@ -6,6 +6,7 @@ import food from "../img/food.jpg";
 export default function Bill() {
   const { currentUser } = useSelector((state) => state.user);
   const [orderDetailsList, setOrderDetailsList] = useState([]);
+  console.log(orderDetailsList)
 
   const CurrentuserId = currentUser ? currentUser._id : null;
 
@@ -63,7 +64,16 @@ export default function Bill() {
                           total price
                         </th>
                         <th className="px-6 py-3 text-left text-lg font-medium  bg-gray-500 bg-opacity-90 text-white text-opacity-80   uppercase">
-                          Data
+                          order date
+                        </th>
+                        <th className="px-6 py-3 text-left text-lg font-medium  bg-gray-500 bg-opacity-90 text-white text-opacity-80   uppercase">
+                          customer info
+                        </th>
+                        <th className="px-6 py-3 text-left text-lg font-medium  bg-gray-500 bg-opacity-90 text-white text-opacity-80   uppercase">
+                          order status
+                        </th>
+                        <th className="px-6 py-3 text-left text-lg font-medium  bg-gray-500 bg-opacity-90 text-white text-opacity-80   uppercase">
+                          action
                         </th>
                       </tr>
                     </thead>

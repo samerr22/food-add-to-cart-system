@@ -25,6 +25,11 @@ const CheckDSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    status: {
+      type: String,
+      enum: ['processing', 'Approve', 'Reject'], 
+      default: 'processing' 
+  },
 
     items: [itemSchema],
     totalPrice: {
