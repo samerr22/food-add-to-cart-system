@@ -3,33 +3,76 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import food from "../img/food.jpg";
 
-export default function Bill() {
+export default function staffoder() {
   const { currentUser } = useSelector((state) => state.user);
   const [orderDetailsList, setOrderDetailsList] = useState([]);
   console.log(orderDetailsList)
 
-  const CurrentuserId = currentUser ? currentUser._id : null;
+  
 
   //after submit form display data order page
+   
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchinfo = async () => {
       try {
-        const response = await fetch(`/api/items/getallcheck/${CurrentuserId}`);
-        const data = await response.json();
+        const res = await fetch(`/api/items/getAllOder`);
+        const data = await res.json();
         console.log(data);
 
-        if (data.length > 0) {
-          setOrderDetailsList(data);
-        } else {
-          setOrderDetailsList([]);
+        if (res.ok) {
+            setOrderDetailsList(data.Details);
         }
       } catch (error) {
-        console.error("Error fetching order data:", error);
+        console.log(error.message);
       }
     };
+    fetchinfo();
+  }, []);
 
-    fetchData();
-  }, [CurrentuserId]);
+
+  const handleStatusChange = async (FormmId, currentStatus) => {
+    try {
+      let newStatus;
+      switch (currentStatus) {
+        case "processing":
+          newStatus = "Approval";
+          break;
+        case "Approval":
+          newStatus = "Reject";
+          break;
+        case "Reject":
+          newStatus = "processing";
+          break;
+        default:
+          newStatus = "processing"; // Default to "Processing" if status is not recognized
+      }
+
+      const res = await fetch(`/api/items/adopp/${FormmId}/status`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      if (res.ok) {
+        setOrderDetailsList(
+            orderDetailsList.map((order) => {
+            if (order._id === FormmId) {
+              return { ...order, status: newStatus };
+            }
+            return order;
+          })
+        );
+       
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+   
+
 
   return (
     <div className="min-h-screen">
@@ -39,17 +82,10 @@ export default function Bill() {
         <div className="lg:mt-20 mt-[270px] md:mt-20 lg:ml-[] md:ml-[] ml-[4px]">
           <div className="flex justify-center items-center mt-2">
             <div className="uppercase font-light  opacity-85 text-3xl ml-32 mt-8 text-white ">
-            order history
+            orders
             </div>
           </div>
-          <div className="flex justify-center items-center mt-3">
-          <Link to={`/cart`}>
-            <button className="text-white w-32 h-8  rounded-full bg-black border border-white  shadow-black uppercase font-serif ml-32 cursor-pointer hover:opacity-85">
-            back
-            </button>
-            </Link>
-          
-          </div>
+         
           <div className="w-[1200px] h-[400px] mt-6 ml-36  shadow-sm shadow-black rounded-xl bg-opacity-90 bg-gray-100">
             <div className="">
               <div className="flex justify-center items-center ">
@@ -72,9 +108,7 @@ export default function Bill() {
                         <th className="px-6 py-3 text-left text-sm font-serif  bg-gray-900 rounded-xl bg-opacity-90 text-white text-opacity-80   uppercase">
                           order status
                         </th>
-                        <th className="px-6 py-3 text-left text-sm font-serif  bg-gray-900 rounded-xl bg-opacity-90 text-white text-opacity-80   uppercase">
-                          action
-                        </th>
+                      
                       </tr>
                     </thead>
 
@@ -107,16 +141,13 @@ export default function Bill() {
                             {order.Username}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap font-serif text-black">
-                            <button className="w-32 h-8 rounded-full bg-[#13c53a] border text-white border-white shadow-sm shadow-black opacity-90">
+                            <button onClick={() =>
+                                    handleStatusChange(order._id, order.status)} className="w-32 h-8 rounded-full bg-[#13c53a] border text-white border-white shadow-sm shadow-black opacity-90">
                             {order.status}
                             </button>
                          
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap font-serif text-black">
-                          <button className="w-32 h-8 rounded-full hover:opacity-80 bg-[#040846] border text-white border-white shadow-sm shadow-black opacity-90">
-                           Pay Now
-                            </button>
-                          </td>
+                        
                         </tr>
                       ))}
                     </tbody>
@@ -130,3 +161,4 @@ export default function Bill() {
     </div>
   );
 }
+

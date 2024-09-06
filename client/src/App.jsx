@@ -7,6 +7,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import Home from "./pages/main";
 import Bill from "./pages/Bill";
 import Cart from "./pages/Cart";
+import Stafflogin from "./pages/Stafflogin";
+import Stafforder from "./pages/staffoder";
 
 
 
@@ -17,12 +19,15 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Signin />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/stafflogin" element={<Stafflogin />} />
 
         <Route element={<PrivateRoute />}>
          
           <Route path="/bill" element={<Bill />} /> 
           <Route path="/cart" element={<Cart />} /> 
           <Route path="/home" element={<Home />} />
+          <Route path="/stafforder" element={<Stafforder />} />
+          
          
         </Route>
       </Routes>

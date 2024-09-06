@@ -108,12 +108,12 @@ export default function main() {
 
   return (
     <div>
-      <img src={food} alt="" className="w-full h-[700px]   object-cover" />
+      <img src={food} alt="" className="w-full h-[700px]   object-cover z-50" />
 
-      <div className="absolute transform -translate-x-0 translate-y-0 top-1 flex justify-center items-center">
-        <div className=" mt-24  ml-36">
-          <div className="bg-slate-100 w-[1200px] h-[580px]  rounded-3xl shadow-2xl shadow-black bg-opacity-90 ">
-            <div className="flex justify-center items-center ">
+      <div className="absolute transform -translate-x-0 translate-y-0 top-1 flex justify-center items-center z-50">
+        <div className=" mt-24  ml-36 z-50">
+          <div className="bg-slate-100 w-[1200px] h-[580px]  z-50 rounded-3xl shadow-2xl shadow-black bg-opacity-90 ">
+            <div className="flex justify-center items-center  z-50">
               <div>
                 <form>
                   <div className="opacity-50">

@@ -44,15 +44,32 @@ export default function Header() {
               </Link>
               <button
                 onClick={handleSignout}
-                className="text-black px-3 py-1 rounded-lg text-base md:text-lg font-serif hover:bg-blue-800 transition"
+                className="text-white px-3 py-1 rounded-lg text-base md:text-lg font-serif hover:bg-blue-800 transition z-50"
               >
                 LogOut
               </button>
             </>
           ) : (
-            <Link to="/sign-in" className="text-white hover:text-gray-200">
+            <>
+            <div className="ml-[900px] flex  gap-7">
+              <div>
+
+              <Link to="/" className="text-white hover:text-gray-200">
               <li>Sign In</li>
             </Link>
+              </div>
+           
+           <div>
+           <Link to="/stafflogin" className="text-white hover:text-gray-200">
+            <li>Staff In</li>
+          </Link>
+
+           </div>
+            
+
+            </div>
+          
+          </>
           )}
         </ul>
       </div>

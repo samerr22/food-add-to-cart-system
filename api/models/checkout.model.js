@@ -40,6 +40,6 @@ const CheckDSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const CheckD = mongoose.model("ChackD", CheckDSchema);
+const CheckD = mongoose.model("CheckD", CheckDSchema);
 
 export default CheckD;

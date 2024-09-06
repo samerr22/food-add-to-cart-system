@@ -7,6 +7,7 @@ import {
   signInSuccess,
   signInFailure,
 } from "../redux/user/userSilce";
+import food from "../img/food.jpg";
 
 
 export default function SignIn() {
@@ -49,12 +50,7 @@ export default function SignIn() {
 
   return (
     <div className="  min-h-screen ">
-      <img
-        src="https://images.pexels.com/photos/236910/pexels-photo-236910.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-
-        alt=""
-        className="w-full h-[700px] opacity-95 object-cover "
-      />
+       <img src={food} alt="" className="w-full h-[700px]   object-cover z-50" />
 
       <div className="absolute transform -translate-x-0 translate-y-0 top-1  flex justify-center items-center">
         <div className="">
@@ -65,12 +61,12 @@ export default function SignIn() {
            
                 </h1>
 
-                <h1 className="text-4xl font-serif opacity-70 text-gray-800">
-                  Login
+                <h1 className="text-4xl font-serif opacity-70 text-white">
+                  Customer Login
                 </h1>
               </div>
             </div>
-            <div className="bg-blue-800 bg-opacity-10 w-[480px]  md:w-[550px] lg:w-[550px] border h-96 mt-8 max-w-3xl mx-auto rounded-3xl border-opacity-50 ">
+            <div className="bg-white bg-opacity-50 w-[480px]  md:w-[550px] lg:w-[550px] border h-96 mt-8 max-w-3xl mx-auto rounded-3xl border-opacity-50 ">
               <div className="flex justify-center items-center   ">
                 <div className="mt-16">
                   <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -99,16 +95,12 @@ export default function SignIn() {
                       />
                     </div>
                     <button
-                      className=" bg-blue-800 mt-6 bg-opacity-80 border-white border border-opacity-50 text-white p-3 rounded-lg w-[460px] h-[45px] hover:opacity-90"
+                      className=" bg-slate-900 mt-6 bg-opacity-80 border-white border border-opacity-50 text-white p-3 rounded-lg w-[460px] h-[45px] hover:opacity-90"
                       type="submit"
                       disabled={loading}
                     >
-                      {loading ? (
-                        <>
-                          <Spinner size="sm" />
-                          <sapn className="pl-3">Loading...</sapn>
-                        </>
-                      ) : (
+                      
+                     
                         <>
                           <div className="flex items-center justify-center">
                             <div className="font-serif text-xl opacity-75">
@@ -116,9 +108,15 @@ export default function SignIn() {
                             </div>
                           </div>
                         </>
-                      )}
+                     
                     </button>
                   </form>
+                  <div className="flex gap-2 text-sm ">
+            <span>Have an account?</span>
+            <Link to="/sign-up" className="text-blue-900 hover:text-blue-700">
+              Sign up
+            </Link>
+          </div>
 
                   {errorMessage && (
                     <p className="mt-5 text-red-600 bg-red-300 w-300 h-7 rounded-lg text-center ">

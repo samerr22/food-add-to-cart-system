@@ -157,3 +157,46 @@ export const getcheckdetails = async (req, res, next) => {
 };
 
 
+//status
+//status 
+export const updateStatus = async (req, res, next) => {
+  try {
+    
+
+    const { FormId } = req.params;
+    const { status } = req.body;
+
+    const updatedform = await Items.findByIdAndUpdate(
+      FormId ,
+      { status },
+      { new: true }
+    );
+
+    if (!updatedform) {
+      return next(errorHandle(404, " form not found"));
+    }
+
+    res.status(200).json(updatedform);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+//get all order
+export const getAlloder = async (req, res, next) => {
+  try {
+    const Details = await CheckD.find();
+
+    if (Details.length > 0) {
+      res.json({ message: "Items details retrieved successfully", Details });
+    } else {
+      return next(errorHandle(404, " student not fonud "));
+    }
+  } catch (error) {
+    console.log(error.message);
+
+    next(error);
+  }
+};
+

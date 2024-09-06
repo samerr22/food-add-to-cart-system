@@ -1,12 +1,19 @@
+import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from "../redux/user/userSilce";
 import food from "../img/food.jpg";
 
 
-export default function SignUp() {
+export default function Stafflogin() {
   const [formData, setFormData] = useState({});
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const { loading, error: errorMessage } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handlchange = (e) => {
@@ -15,33 +22,31 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.username || !formData.email || !formData.password) {
-      return setErrorMessage("Plese fill out all fields");
+    if (!formData.email || !formData.password) {
+      return dispatch(signInFailure("please fill all the fields"));
     }
 
     try {
-      setLoading(true);
-      setErrorMessage(null);
+      dispatch(signInStart());
 
-      const res = await fetch("/api/auth/signup", {
+      const res = await fetch("/api/auth/ssignin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
       const data = await res.json();
       if (data.success === false) {
-        return setErrorMessage(data.message);
+        dispatch(signInFailure(data.message));
       }
-      setLoading(false);
-      if(res.ok){
-        navigate('/sign-in');
+
+      if (res.ok) {
+        dispatch(signInSuccess(data));
+        navigate("/stafforder");
       }
     } catch (error) {
-      setErrorMessage(error.message);
-      setLoading(false);
+      dispatch(signInFailure(data.message));
     }
   };
-
 
   return (
     <div className="  min-h-screen ">
@@ -57,26 +62,14 @@ export default function SignUp() {
                 </h1>
 
                 <h1 className="text-4xl font-serif opacity-70 text-white">
-                  Customer Register
+                  Staff Login
                 </h1>
               </div>
             </div>
             <div className="bg-white bg-opacity-50 w-[480px]  md:w-[550px] lg:w-[550px] border h-96 mt-8 max-w-3xl mx-auto rounded-3xl border-opacity-50 ">
               <div className="flex justify-center items-center   ">
-                <div className="mt-8">
+                <div className="mt-16">
                   <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                    <div>
-                      <h3 className="font-semibold text-gray-700 ml-1">
-                       Username
-                      </h3>
-                      <input
-                        className=" bg-slate-100 bg-opacity-40 border-white border-opacity-50  p-3 rounded-lg w-[460px] h-11"
-                        type="text"
-                        placeholder="username"
-                        id="username"
-                        onChange={handlchange}
-                      />
-                    </div>
                     <div>
                       <h3 className="font-semibold text-gray-700 ml-1">
                         Email
@@ -106,21 +99,19 @@ export default function SignUp() {
                       type="submit"
                       disabled={loading}
                     >
+                      
                      
+                        <>
                           <div className="flex items-center justify-center">
                             <div className="font-serif text-xl opacity-75">
-                              SING UP
+                              SING IN
                             </div>
                           </div>
-                       
+                        </>
+                     
                     </button>
                   </form>
-                  <div className="flex gap-2 text-sm ml-2">
-            <span>Have an account?</span>
-            <Link to="/" className="text-blue-950 hover:text-blue-600">
-              Sign In
-            </Link>
-          </div>
+               
 
                   {errorMessage && (
                     <p className="mt-5 text-red-600 bg-red-300 w-300 h-7 rounded-lg text-center ">
