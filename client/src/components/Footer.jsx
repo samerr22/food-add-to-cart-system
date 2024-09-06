@@ -5,7 +5,7 @@ import google from "../img/google-maps.png";
 
 export default function Footer() {
   return (
-    <div className="bg-[#070707] broder-none">
+    <div className="bg-[#070707] broder-none ">
       <div className="w-full max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           

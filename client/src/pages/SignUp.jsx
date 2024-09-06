@@ -34,7 +34,7 @@ export default function SignUp() {
       }
       setLoading(false);
       if(res.ok){
-        navigate('/sign-in');
+        navigate('/');
       }
     } catch (error) {
       setErrorMessage(error.message);
@@ -49,7 +49,7 @@ export default function SignUp() {
 
       <div className="absolute transform -translate-x-0 translate-y-0 top-1  flex justify-center items-center">
         <div className="">
-          <div className=" mt-20 lg:ml-[450px] md:ml-[240px] ml-[4px] ">
+          <div className=" mt-20 lg:ml-[470px] md:ml-[240px] ml-[4px] ">
             <div className=" flex justify-center items-center">
               <div>
                 <h1 className="text-4xl ml-12 font-serif opacity-70 text-gray-800">
@@ -123,7 +123,7 @@ export default function SignUp() {
           </div>
 
                   {errorMessage && (
-                    <p className="mt-5 text-red-600 bg-red-300 w-300 h-7 rounded-lg text-center ">
+                    <p className="mt-5 text-white bg-opacity-40 bg-red-300 w-300 h-7 rounded-lg text-center ">
                       {errorMessage}
                     </p>
                   )}

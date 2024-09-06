@@ -54,6 +54,7 @@ export default function Cart() {
       if (res.ok) {
         setInfo((prev) => prev.filter((items) => items._id !== FormId));
         alert("succesfull");
+        window.location.reload();
       } else {
         console.log(data.message);
       }
@@ -180,7 +181,7 @@ export default function Cart() {
                 <div className=" flex justify-center items-center mt-2 ml-36">
                   <div className="w-[1200px] h-[500px] bg-white rounded-3xl shadow-lg shadow-black bg-opacity-80">
                     <div className="flex justify-center items-center  ">
-                      <div className="max-h-96 scrollbar-none  overflow-y-auto mt-4">
+                      <div className="max-h-64 scrollbar-none  overflow-y-auto mt-4">
                         <table className="w-[1000px] border border-white border-opacity-50 divide-y divide-black shadow-md">
                           <thead className="bg-none divide-x  divide-black">
                             <tr>

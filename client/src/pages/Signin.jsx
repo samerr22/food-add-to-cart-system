@@ -15,6 +15,7 @@ export default function SignIn() {
   const { loading, error: errorMessage } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [errorMessag, setErrorMessage] = useState(null);
 
   const handlchange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
@@ -37,6 +38,7 @@ export default function SignIn() {
       const data = await res.json();
       if (data.success === false) {
         dispatch(signInFailure(data.message));
+        setErrorMessage(data.message)
       }
 
       if (res.ok) {
@@ -45,6 +47,7 @@ export default function SignIn() {
       }
     } catch (error) {
       dispatch(signInFailure(data.message));
+      setErrorMessage("password or email must be wrrong")
     }
   };
 
@@ -54,7 +57,7 @@ export default function SignIn() {
 
       <div className="absolute transform -translate-x-0 translate-y-0 top-1  flex justify-center items-center">
         <div className="">
-          <div className=" mt-20 lg:ml-[450px] md:ml-[240px] ml-[4px] ">
+          <div className=" mt-20 lg:ml-[470px] md:ml-[240px] ml-[4px] ">
             <div className=" flex justify-center items-center">
               <div>
                 <h1 className="text-4xl ml-12 font-serif opacity-70 text-gray-800">
@@ -118,9 +121,9 @@ export default function SignIn() {
             </Link>
           </div>
 
-                  {errorMessage && (
+                  {errorMessag && (
                     <p className="mt-5 text-red-600 bg-red-300 w-300 h-7 rounded-lg text-center ">
-                      {errorMessage}
+                      {errorMessag}
                     </p>
                   )}
                 </div>

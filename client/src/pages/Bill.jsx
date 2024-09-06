@@ -37,12 +37,12 @@ export default function Bill() {
 
       <div className="absolute transform -translate-x-0 translate-y-0 top-1 flex justify-center items-center">
         <div className="lg:mt-20 mt-[270px] md:mt-20 lg:ml-[] md:ml-[] ml-[4px]">
-          <div className="flex justify-center items-center mt-2">
+          <div className="flex justify-center items-center ml-4 mt-2">
             <div className="uppercase font-light  opacity-85 text-3xl ml-32 mt-8 text-white ">
             order history
             </div>
           </div>
-          <div className="flex justify-center items-center mt-3">
+          <div className="flex justify-center items-center ml-3 mt-3">
           <Link to={`/cart`}>
             <button className="text-white w-32 h-8  rounded-full bg-black border border-white  shadow-black uppercase font-serif ml-32 cursor-pointer hover:opacity-85">
             back
@@ -107,7 +107,7 @@ export default function Bill() {
                             {order.Username}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap font-serif text-black">
-                            <button className="w-32 h-8 rounded-full bg-[#13c53a] border text-white border-white shadow-sm shadow-black opacity-90">
+                            <button className="w-32 cursor-default h-8 rounded-full bg-[#13c53a] border text-white border-white shadow-sm shadow-black opacity-90">
                             {order.status}
                             </button>
                          

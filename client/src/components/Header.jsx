@@ -24,7 +24,7 @@ export default function Header() {
   };
 
   return (
-    <div className="bg-[#131212]  border border-black shadow-sm shadow-black">
+    <div className="bg-[#131212]  border border-black shadow-sm shadow-black z-50 ">
       <div className="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto p-4">
         
         <ul className="flex flex-col md:flex-row gap-2 md:gap-4 mt-2 md:mt-0">
@@ -44,7 +44,8 @@ export default function Header() {
               </Link>
               <button
                 onClick={handleSignout}
-                className="text-white px-3 py-1 rounded-lg text-base md:text-lg font-serif hover:bg-blue-800 transition z-50"
+                style={{ cursor: 'pointer', zIndex: 100 }}
+                className="text-white px-3 py-1 rounded-lg text-base md:text-lg font-serif hover:bg-slate-900 "
               >
                 LogOut
               </button>

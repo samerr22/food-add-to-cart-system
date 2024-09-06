@@ -166,7 +166,7 @@ export const updateStatus = async (req, res, next) => {
     const { FormId } = req.params;
     const { status } = req.body;
 
-    const updatedform = await Items.findByIdAndUpdate(
+    const updatedform = await CheckD.findByIdAndUpdate(
       FormId ,
       { status },
       { new: true }

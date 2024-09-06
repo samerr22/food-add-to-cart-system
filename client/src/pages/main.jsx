@@ -108,7 +108,7 @@ export default function main() {
 
   return (
     <div>
-      <img src={food} alt="" className="w-full h-[700px]   object-cover z-50" />
+      <img src={food} alt="" className="w-full h-[700px]   object-cover z-40" />
 
       <div className="absolute transform -translate-x-0 translate-y-0 top-1 flex justify-center items-center z-50">
         <div className=" mt-24  ml-36 z-50">
