@@ -104,6 +104,12 @@ export default function SignIn() {
                     >
                       
                      
+                      {loading ? (
+                        <>
+                          <Spinner size="sm" />
+                          <sapn className="pl-3">Loading...</sapn>
+                        </>
+                      ) : (
                         <>
                           <div className="flex items-center justify-center">
                             <div className="font-serif text-xl opacity-75">
@@ -111,6 +117,7 @@ export default function SignIn() {
                             </div>
                           </div>
                         </>
+                      )}
                      
                     </button>
                   </form>

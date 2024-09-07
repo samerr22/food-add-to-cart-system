@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import food from "../img/food.jpg";
+import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 
 
 export default function SignUp() {
@@ -107,11 +108,20 @@ export default function SignUp() {
                       disabled={loading}
                     >
                      
+                     {loading ? (
+                        <>
+                          <Spinner size="sm" />
+                          <sapn className="pl-3">Loading...</sapn>
+                        </>
+                      ) : (
+                        <>
                           <div className="flex items-center justify-center">
                             <div className="font-serif text-xl opacity-75">
                               SING UP
                             </div>
                           </div>
+                        </>
+                      )}
                        
                     </button>
                   </form>
